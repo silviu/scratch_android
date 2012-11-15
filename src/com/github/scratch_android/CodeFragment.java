@@ -39,12 +39,11 @@ public class CodeFragment extends Fragment {
 					Operation op = new Operation(v.getContext());
 					((ViewGroup) v).addView(op, params);
 
-					Log.v(DROPTAG, "drag drop in dropTarget");
+					Log.v(DROPTAG, "Droped Operation on target");
 					break;
 				case DragEvent.ACTION_DRAG_ENDED:
 					break;
 				default:
-					Log.v(DROPTAG, "other action in dropzone: " + action);
 					result = false;
 				}
 				return result;

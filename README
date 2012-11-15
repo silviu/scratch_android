@@ -6,3 +6,9 @@ Minimum Required SDK: API 11: Android 3.0
 Target SDK: API 17: Android 4.2
 Compile With: API 11: Android 3.0
 Theme: Halo Light
+
+
+AVD INFO:
+
+Device: 10.1" WXGA (Tablet) (1280x800)
+Target: Android 3.0 - API Level 11
