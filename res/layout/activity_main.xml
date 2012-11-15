@@ -1,0 +1,19 @@
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <fragment
+            android:id="@+id/operations_fragment"
+            android:name="com.github.scratch_android.OperationsFragment"
+            android:layout_width="321dp"
+            android:layout_height="match_parent"
+            class="com.github.scratch_android.OperationsFragment" />
+
+        <fragment
+            android:id="@+id/fragment1"
+            android:name="com.github.scratch_android.CodeFragment"
+            android:layout_width="347dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>

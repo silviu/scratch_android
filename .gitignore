@@ -1,0 +1,11 @@
+*~
+bin/
+assets
+.classpath
+.project
+.settings
+gen
+ic_launcher-web.png
+libs
+lint.xml
+proguard-project.txt
