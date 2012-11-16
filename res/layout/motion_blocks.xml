@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+	<com.github.scratch_android.MotionCodeBlock
+	    android:id = "@+id/block_motion_move_10_steps"
+	    android:src = "@drawable/motion_move_10_steps"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content" >
+	</com.github.scratch_android.MotionCodeBlock>
+	
+	<com.github.scratch_android.MotionCodeBlock
+	    android:id = "@+id/block_motion_turn_15_degrees_right"
+	    android:src = "@drawable/motion_turn_15_degrees_right"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="30dip">
+	</com.github.scratch_android.MotionCodeBlock>
+	
+	<com.github.scratch_android.MotionCodeBlock
+	    android:id = "@+id/block_motion_turn_15_degrees_left"
+	    android:src = "@drawable/motion_turn_15_degrees_left"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="60dip">
+	</com.github.scratch_android.MotionCodeBlock>
+	
+	<com.github.scratch_android.MotionCodeBlock
+	    android:id = "@+id/block_motion_point_in_direction_90"
+	    android:src = "@drawable/motion_point_in_direction_90"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="120dip">
+	</com.github.scratch_android.MotionCodeBlock>
+	
+	<com.github.scratch_android.MotionCodeBlock
+	    android:id = "@+id/block_motion_point_towards"
+	    android:src = "@drawable/motion_point_towards"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="150dip">
+	</com.github.scratch_android.MotionCodeBlock>
+	
+	<com.github.scratch_android.MotionCodeBlock
+	    android:id = "@+id/block_motion_go_to_x_y"
+	    android:src = "@drawable/motion_go_to_x_y"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="210dip">
+	</com.github.scratch_android.MotionCodeBlock>
+	
+	<com.github.scratch_android.MotionCodeBlock
+	    android:id = "@+id/block_motion_go_to"
+	    android:src = "@drawable/motion_go_to"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="240dip">
+	</com.github.scratch_android.MotionCodeBlock>
+	
+	<com.github.scratch_android.MotionCodeBlock
+	    android:id = "@+id/block_motion_glide_time_to_x_y"
+	    android:src = "@drawable/motion_glide_time_to_x_y"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="270dip">
+	</com.github.scratch_android.MotionCodeBlock>
+	
+	<com.github.scratch_android.MotionCodeBlock
+	    android:id = "@+id/block_motion_change_x_by"
+	    android:src = "@drawable/motion_change_x_by"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="330dip">
+	</com.github.scratch_android.MotionCodeBlock>
+	
+	<com.github.scratch_android.MotionCodeBlock
+	    android:id = "@+id/block_motion_set_x_to"
+	    android:src = "@drawable/motion_set_x_to"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="360dip">
+	</com.github.scratch_android.MotionCodeBlock>
+	
+	<com.github.scratch_android.MotionCodeBlock
+	    android:id = "@+id/block_motion_change_y_by"
+	    android:src = "@drawable/motion_change_y_by"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="390dip">
+	</com.github.scratch_android.MotionCodeBlock>
+	
+	<com.github.scratch_android.MotionCodeBlock
+	    android:id = "@+id/block_motion_set_y_to"
+	    android:src = "@drawable/motion_set_y_to"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="420dip">
+	</com.github.scratch_android.MotionCodeBlock>
+	
+	<com.github.scratch_android.MotionCodeBlock
+	    android:id = "@+id/block_motion_if_on_edge_bounce"
+	    android:src = "@drawable/motion_if_on_edge_bounce"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="480dip">
+	</com.github.scratch_android.MotionCodeBlock>
+	
+	<com.github.scratch_android.MotionCodeBlock
+	    android:id = "@+id/block_motion_x_position"
+	    android:src = "@drawable/motion_x_position"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="540dip">
+	</com.github.scratch_android.MotionCodeBlock>
+	
+	<com.github.scratch_android.MotionCodeBlock
+	    android:id = "@+id/block_motion_y_position"
+	    android:src = "@drawable/motion_y_position"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="560dip">
+	</com.github.scratch_android.MotionCodeBlock>
+	
+	<com.github.scratch_android.MotionCodeBlock
+	    android:id = "@+id/block_motion_direction"
+	    android:src = "@drawable/motion_direction"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="578dip">
+	</com.github.scratch_android.MotionCodeBlock>
+	
+</RelativeLayout>
