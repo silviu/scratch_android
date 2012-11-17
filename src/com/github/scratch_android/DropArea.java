@@ -37,8 +37,8 @@ public class DropArea extends Fragment implements View.OnDragListener{
 			owner.removeView(view);
 
 			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-			params.leftMargin = (int) event.getX() - 25;
-			params.topMargin = (int) event.getY() - 25;
+			params.leftMargin = (int) event.getX() - view.getWidth()/2;
+			params.topMargin = (int) event.getY() - view.getHeight()/2;
 
 
 			((ViewGroup) v).addView(view, params);
