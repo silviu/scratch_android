@@ -5,10 +5,10 @@
 
         <fragment
             android:id="@+id/operations_fragment"
-            android:name="com.github.scratch_android.OperationsFragment"
+            android:name="com.github.scratch_android.DragArea"
             android:layout_width="212dp"
             android:layout_height="match_parent"
-            class="com.github.scratch_android.OperationsFragment" />
+            class="com.github.scratch_android.DragArea" />
 
         <fragment
             android:id="@+id/fragment1"

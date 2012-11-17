@@ -16,7 +16,6 @@ public class DropArea extends Fragment implements View.OnDragListener{
 		v.setOnDragListener(this);
 		return v;
 	}
-	
 	@Override
 	public boolean onDrag(View v, DragEvent event) {
 		final String DROPTAG = "DropTarget";
@@ -37,7 +36,7 @@ public class DropArea extends Fragment implements View.OnDragListener{
 			ViewGroup owner = (ViewGroup) view.getParent();
 			owner.removeView(view);
 
-			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(130, 30);
+			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 			params.leftMargin = (int) event.getX() - 25;
 			params.topMargin = (int) event.getY() - 25;
 
