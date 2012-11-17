@@ -7,31 +7,21 @@ import android.view.DragEvent;
 import android.view.View;
 import android.widget.ImageView;
 
-public abstract class CodeBlock extends ImageView implements View.OnDragListener{
-
-	public CodeBlock(Context context) {
-		super(context);
-		setOnLongClickListener(lcListener);
-		this.setImageResource(R.drawable.motion_change_x_by);
-		setOnDragListener(this);
-	}
+public abstract class CodeBlock extends ImageView implements View.OnDragListener , View.OnLongClickListener{
 
 	public CodeBlock(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		setOnLongClickListener(lcListener);
+		setOnLongClickListener(this);
 		setOnDragListener(this);
 	}
 
-	private static View.OnLongClickListener lcListener = new View.OnLongClickListener() {
-		private boolean mDragInProgress;
-
-		public boolean onLongClick(View v) {
+	public boolean onLongClick(View v) {
 			ClipData data = ClipData.newPlainText("DragData", (String) v.getTag());
-			mDragInProgress = v.startDrag(data, new View.DragShadowBuilder(v), (Object) v, 0);
+			DragShadowBuilder dsb = new View.DragShadowBuilder(v);
+			boolean mDragInProgress = v.startDrag(data, dsb, (Object) v, 0);
 			Log.v((String) v.getTag(), "Started dragging:  " + mDragInProgress);
 			return true;
-		}
-	};
+	}
 
 	@Override
 	public boolean onDrag(View v, DragEvent event) {
