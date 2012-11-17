@@ -40,9 +40,9 @@ public class DropArea extends Fragment implements View.OnDragListener{
 			params.leftMargin = (int) event.getX() - view.getWidth()/2;
 			params.topMargin = (int) event.getY() - view.getHeight()/2;
 
-
 			((ViewGroup) v).addView(view, params);
 			Log.v(DROPTAG, "Droped Operation on target");
+			System.gc();
 			break;
 		case DragEvent.ACTION_DRAG_ENDED:
 			break;
