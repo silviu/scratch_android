@@ -1,25 +1,75 @@
 package com.github.scratch_android;
 
+import java.util.ArrayList;
+
 import android.app.Fragment;
+import android.content.ClipData;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.DragShadowBuilder;
 import android.widget.RelativeLayout;
 
-public class DropArea extends Fragment implements View.OnDragListener{
+public class DropArea extends Fragment {
+	private DropAreaManager manager;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,	Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.code_layout, container, false);
-		v.setOnDragListener(this);
+		manager = new DropAreaManager(v);
 		return v;
 	}
+
+	public DropAreaManager get_manager() {
+		return this.manager;
+	}
+}
+
+class DropAreaManager implements View.OnDragListener, View.OnLongClickListener {
+	private View v;
+	private ArrayList<CodeBlock> listeners;
+	private MainActivityManager parent_manager;
+
+	public DropAreaManager(View view) {
+		this.v = view;
+		this.listeners = new ArrayList<CodeBlock>();
+		construct_listeners();
+	}
+
+	public void set_parent_manager(MainActivityManager pmanager) {
+		this.parent_manager = pmanager;
+	}
+	
+	private void code_block_dropped(CodeBlock cb) {
+		parent_manager.code_block_dropped(cb);
+	}
+
+	private void construct_listeners() {
+		ViewGroup container = (ViewGroup) this.v.findViewById(R.id.drop_area_container);
+		int child_count =  container.getChildCount();
+		for (int i = 0; i < child_count; i++) {
+			CodeBlock cb = (CodeBlock) container.getChildAt(i);
+			cb.setOnLongClickListener(this);
+			cb.setOnDragListener(this);
+			listeners.add(cb);
+		}
+		v.setOnDragListener(this);
+	}
+
+	@Override
+	public boolean onLongClick(View v) {
+		ClipData data = ClipData.newPlainText("DragData", (String) v.getTag());
+		DragShadowBuilder dsb = new View.DragShadowBuilder(v);
+		boolean mDragInProgress = v.startDrag(data, dsb, (Object) v, 1);
+		Log.v((String) v.getTag(), "Started dragging:  " + mDragInProgress);
+		return true;
+	}
+
 	@Override
 	public boolean onDrag(View v, DragEvent event) {
 		final String DROPTAG = "DropTarget";
-
 		int action = event.getAction();
 		boolean result = true;
 		switch (action) {
@@ -32,24 +82,25 @@ public class DropArea extends Fragment implements View.OnDragListener{
 		case DragEvent.ACTION_DRAG_LOCATION:
 			break;
 		case DragEvent.ACTION_DROP:
-			View view = (View) event.getLocalState();
-			ViewGroup owner = (ViewGroup) view.getParent();
-			owner.removeView(view);
+			CodeBlock cb = (CodeBlock) event.getLocalState();
+			ViewGroup owner = (ViewGroup) cb.getParent();
 
-			if (owner != v) {
-				String image_name  = ((CodeBlock) view).get_image_name();
-				int top_margin = ((CodeBlock) view).get_margin_top();
-				MotionCodeBlock child = new MotionCodeBlock(getActivity(), image_name, top_margin);
-				RelativeLayout.LayoutParams paramsw = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-				paramsw.leftMargin = 0;
-				paramsw.topMargin = ((CodeBlock) view).get_margin_top();
-				owner.addView(child, paramsw);
+			if (owner != v && !listeners.contains(cb)) {
+				code_block_dropped(cb);
+				cb.setOnLongClickListener(this);
+				cb.setOnDragListener(this);
+				listeners.add(cb);
+				
 			}
+			else if (owner == v) {
+				owner.removeView(cb);
+			}
+			
 			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-			params.leftMargin = (int) event.getX() - view.getWidth()/2;
-			params.topMargin = (int) event.getY() - view.getHeight()/2;
-			((ViewGroup) v).addView(view, params);
-
+			params.leftMargin = (int) event.getX() - cb.getWidth()/2;
+			params.topMargin = (int) event.getY() - cb.getHeight()/2;
+			((ViewGroup) v).addView(cb, params);
+			
 			Log.v(DROPTAG, "Droped Operation on target");
 			System.gc();
 			break;

@@ -15,7 +15,7 @@
             class="com.github.scratch_android.FragmentSwitcher" />
 		    
 		    <fragment
-            android:id="@+id/operations_fragment"
+            android:id="@+id/drag_area_fragment"
             android:name="com.github.scratch_android.DragArea"
             android:layout_width="212dp"
             android:layout_height="fill_parent"
@@ -24,7 +24,7 @@
         
 
         <fragment
-            android:id="@+id/fragment1"
+            android:id="@+id/drop_area_fragment"
             android:name="com.github.scratch_android.DropArea"
             android:layout_width="347dp"
             android:layout_height="match_parent" />

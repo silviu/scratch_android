@@ -9,34 +9,38 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class FragmentSwitcher extends Fragment{
+public class FragmentSwitcher extends Fragment {
+	private FragmentSwitcherManager manager;
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_switcher_layout, container, false);
-		new Manager(v);
+		manager = new FragmentSwitcherManager(v);
+		
 		return v;
+	}
+	
+	public FragmentSwitcherManager get_manager() {
+		return this.manager;
 	}
 }
 
-class Manager implements View.OnClickListener {
+class FragmentSwitcherManager implements View.OnClickListener {
 	private View v;
 	private ArrayList<ToggleFragmentButton> listeners = new ArrayList<ToggleFragmentButton>();
-
-	private final int N = 8;
-	private final int[] buttons = { R.id.motion_button_id,    R.id.looks_button_id, 
-									  R.id.sound_button_id,     R.id.pen_button_id, 
-									  R.id.control_button_id,   R.id.sensing_button_id, 
-									  R.id.operators_button_id, R.id.variables_button_id};
-	public Manager(View v) {
+	
+	public FragmentSwitcherManager(View v) {
 		this.v = v;
 		construct_listeners();
+		listeners.get(0).toggle();
 	}
 	
 	public void construct_listeners() {
-		for (int i = 0; i < N; i++) {
-			ToggleFragmentButton tfb = (ToggleFragmentButton) this.v.findViewById(buttons[i]);
+		ViewGroup container = (ViewGroup) this.v.findViewById(R.id.button_container);
+		int child_count =  container.getChildCount();
+		for (int i = 0; i < child_count; i++) {
+			ToggleFragmentButton tfb = (ToggleFragmentButton) container.getChildAt(i);
 			tfb.setOnClickListener(this);
 			listeners.add(tfb);
 		}
