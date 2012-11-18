@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myapp="http://schemas.android.com/apk/res/com.github.scratch_android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@color/top_gray">
+    
+	<com.github.scratch_android.ToggleFragmentButton
+	    android:src = "@drawable/button_motion_selected"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="0dip"
+    	android:layout_marginLeft="15dip"
+    	myapp:selected_image_name="button_motion_selected"
+    	myapp:unselected_image_name="button_motion"
+    	>
+   	</com.github.scratch_android.ToggleFragmentButton>
+   	
+	<com.github.scratch_android.ToggleFragmentButton
+	    android:src = "@drawable/button_looks"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="30dip"
+    	android:layout_marginLeft="15dip"
+    	myapp:selected_image_name="button_looks_selected"
+    	myapp:unselected_image_name="button_looks">
+   	</com.github.scratch_android.ToggleFragmentButton>
+   	
+	<com.github.scratch_android.ToggleFragmentButton
+	    android:src = "@drawable/button_sound"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="60dip"
+    	android:layout_marginLeft="15dip"
+    	myapp:selected_image_name="button_sound_selected"
+    	myapp:unselected_image_name="button_sound">
+   	</com.github.scratch_android.ToggleFragmentButton>
+   	
+	<com.github.scratch_android.ToggleFragmentButton
+	    android:src = "@drawable/button_pen"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="90dip"
+    	android:layout_marginLeft="15dip"
+    	myapp:selected_image_name="button_pen_selected"
+    	myapp:unselected_image_name="button_pen">
+   	</com.github.scratch_android.ToggleFragmentButton>
+   	
+	<com.github.scratch_android.ToggleFragmentButton
+	    android:src = "@drawable/button_control"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="0dip"
+    	android:layout_marginLeft="120dip"
+    	myapp:selected_image_name="button_control_selected"
+    	myapp:unselected_image_name="button_control">
+   	</com.github.scratch_android.ToggleFragmentButton>
+   	
+	<com.github.scratch_android.ToggleFragmentButton
+	    android:src = "@drawable/button_sensing"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="30dip"
+    	android:layout_marginLeft="120dip"
+    	myapp:selected_image_name="button_sensing_selected"
+    	myapp:unselected_image_name="button_sensing">
+   	</com.github.scratch_android.ToggleFragmentButton>
+   	
+	<com.github.scratch_android.ToggleFragmentButton
+	    android:src = "@drawable/button_operators"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="60dip"
+    	android:layout_marginLeft="120dip"
+    	myapp:selected_image_name="button_operators_selected"
+    	myapp:unselected_image_name="button_operators">
+   	</com.github.scratch_android.ToggleFragmentButton>
+   	
+	<com.github.scratch_android.ToggleFragmentButton
+	    android:src = "@drawable/button_variables"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="90dip"
+    	android:layout_marginLeft="120dip"
+    	android:layout_marginBottom="10dip"
+    	myapp:selected_image_name="button_variables_selected"
+    	myapp:unselected_image_name="button_variables">
+   	</com.github.scratch_android.ToggleFragmentButton>
+</RelativeLayout>

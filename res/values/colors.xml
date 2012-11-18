@@ -2,4 +2,5 @@
 <resources> 
     <color name="gray">#A9A9A9</color>
     <color name="hint">#2E2E2E</color>
+    <color name="top_gray">#959a9f</color>
 </resources>
