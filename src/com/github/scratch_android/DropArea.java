@@ -36,11 +36,20 @@ public class DropArea extends Fragment implements View.OnDragListener{
 			ViewGroup owner = (ViewGroup) view.getParent();
 			owner.removeView(view);
 
+			if (owner != v) {
+				String image_name  = ((CodeBlock) view).get_image_name();
+				int top_margin = ((CodeBlock) view).get_margin_top();
+				MotionCodeBlock child = new MotionCodeBlock(getActivity(), image_name, top_margin);
+				RelativeLayout.LayoutParams paramsw = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+				paramsw.leftMargin = 0;
+				paramsw.topMargin = ((CodeBlock) view).get_margin_top();
+				owner.addView(child, paramsw);
+			}
 			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 			params.leftMargin = (int) event.getX() - view.getWidth()/2;
 			params.topMargin = (int) event.getY() - view.getHeight()/2;
-
 			((ViewGroup) v).addView(view, params);
+
 			Log.v(DROPTAG, "Droped Operation on target");
 			System.gc();
 			break;

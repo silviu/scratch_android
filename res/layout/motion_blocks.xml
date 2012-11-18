@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myapp="http://schemas.android.com/apk/res/com.github.scratch_android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray">
@@ -8,112 +9,145 @@
 	<com.github.scratch_android.MotionCodeBlock
 	    android:src = "@drawable/motion_move_10_steps"
 	    android:layout_width="wrap_content"
-    	android:layout_height="wrap_content" >
-	</com.github.scratch_android.MotionCodeBlock>
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="0dip"
+    	myapp:image_name="motion_move_10_steps"
+    	myapp:margin_top="0dip">
+   	</com.github.scratch_android.MotionCodeBlock>
 	
 	<com.github.scratch_android.MotionCodeBlock
 	    android:src = "@drawable/motion_turn_15_degrees_right"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_marginTop="30dip">
+    	android:layout_marginTop="30dip"
+    	myapp:image_name="motion_turn_15_degrees_right"
+    	myapp:margin_top="30dip">
 	</com.github.scratch_android.MotionCodeBlock>
 	
 	<com.github.scratch_android.MotionCodeBlock
 	    android:src = "@drawable/motion_turn_15_degrees_left"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_marginTop="60dip">
+    	android:layout_marginTop="60dip"
+    	myapp:image_name="motion_turn_15_degrees_left"
+    	myapp:margin_top="60dip">
 	</com.github.scratch_android.MotionCodeBlock>
 	
 	<com.github.scratch_android.MotionCodeBlock
 	    android:src = "@drawable/motion_point_in_direction_90"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_marginTop="120dip">
+    	android:layout_marginTop="120dip"
+    	myapp:image_name="motion_point_in_direction_90"
+    	myapp:margin_top="120dip">
 	</com.github.scratch_android.MotionCodeBlock>
 	
 	<com.github.scratch_android.MotionCodeBlock
 	    android:src = "@drawable/motion_point_towards"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_marginTop="150dip">
+    	android:layout_marginTop="150dip"
+    	myapp:image_name="motion_point_towards"
+    	myapp:margin_top="150dip">
 	</com.github.scratch_android.MotionCodeBlock>
 	
 	<com.github.scratch_android.MotionCodeBlock
 	    android:src = "@drawable/motion_go_to_x_y"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_marginTop="210dip">
+    	android:layout_marginTop="210dip"
+    	myapp:image_name="motion_go_to_x_y"
+    	myapp:margin_top="210dip">
 	</com.github.scratch_android.MotionCodeBlock>
 	
 	<com.github.scratch_android.MotionCodeBlock
 	    android:src = "@drawable/motion_go_to"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_marginTop="240dip">
+    	android:layout_marginTop="240dip"
+    	myapp:image_name="motion_go_to"
+    	myapp:margin_top="240dip">
 	</com.github.scratch_android.MotionCodeBlock>
 	
 	<com.github.scratch_android.MotionCodeBlock
 	    android:src = "@drawable/motion_glide_time_to_x_y"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_marginTop="270dip">
+    	android:layout_marginTop="270dip"
+    	myapp:image_name="motion_glide_time_to_x_y"
+    	myapp:margin_top="270dip">
 	</com.github.scratch_android.MotionCodeBlock>
 	
 	<com.github.scratch_android.MotionCodeBlock
 	    android:src = "@drawable/motion_change_x_by"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_marginTop="330dip">
+    	android:layout_marginTop="330dip"
+    	myapp:image_name="motion_change_x_by"
+    	myapp:margin_top="330dip">
 	</com.github.scratch_android.MotionCodeBlock>
 	
 	<com.github.scratch_android.MotionCodeBlock
 	    android:src = "@drawable/motion_set_x_to"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_marginTop="360dip">
+    	android:layout_marginTop="360dip"
+    	myapp:image_name="motion_set_x_to"
+    	myapp:margin_top="360dip">
 	</com.github.scratch_android.MotionCodeBlock>
 	
 	<com.github.scratch_android.MotionCodeBlock
 	    android:src = "@drawable/motion_change_y_by"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_marginTop="390dip">
+    	android:layout_marginTop="390dip"
+    	myapp:image_name="motion_change_y_by"
+    	myapp:margin_top="390dip">
 	</com.github.scratch_android.MotionCodeBlock>
 	
 	<com.github.scratch_android.MotionCodeBlock
 	    android:src = "@drawable/motion_set_y_to"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_marginTop="420dip">
+    	android:layout_marginTop="420dip"
+    	myapp:image_name="motion_set_y_to"
+    	myapp:margin_top="420dip">
 	</com.github.scratch_android.MotionCodeBlock>
 	
 	<com.github.scratch_android.MotionCodeBlock
 	    android:src = "@drawable/motion_if_on_edge_bounce"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_marginTop="480dip">
+    	android:layout_marginTop="480dip"
+    	myapp:image_name="motion_if_on_edge_bounce"
+    	myapp:margin_top="480dip">
 	</com.github.scratch_android.MotionCodeBlock>
 	
 	<com.github.scratch_android.MotionCodeBlock
 	    android:src = "@drawable/motion_x_position"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_marginTop="540dip">
+    	android:layout_marginTop="540dip"
+    	myapp:image_name="motion_x_position"
+    	myapp:margin_top="540dip">
 	</com.github.scratch_android.MotionCodeBlock>
 	
 	<com.github.scratch_android.MotionCodeBlock
 	    android:src = "@drawable/motion_y_position"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_marginTop="560dip">
+    	android:layout_marginTop="560dip"
+    	myapp:image_name="motion_y_position"
+    	myapp:margin_top="560dip">
 	</com.github.scratch_android.MotionCodeBlock>
 	
 	<com.github.scratch_android.MotionCodeBlock
 	    android:src = "@drawable/motion_direction"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:layout_marginTop="578dip">
+    	android:layout_marginTop="578dip"
+    	myapp:image_name="motion_direction"
+    	myapp:margin_top="578dip">
 	</com.github.scratch_android.MotionCodeBlock>
 	
 </RelativeLayout>

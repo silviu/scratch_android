@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CodeBlock">
-        <attr name="image" format="string"/>
+        <attr name="image_name" format="string"/>
+        <attr name="margin_top" format="dimension"/>
     </declare-styleable>
 </resources>
