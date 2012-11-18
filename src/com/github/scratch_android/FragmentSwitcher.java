@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ToggleButton;
 
 
 public class FragmentSwitcher extends Fragment implements View.OnClickListener{
@@ -19,15 +18,6 @@ public class FragmentSwitcher extends Fragment implements View.OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		// Is the toggle on?
-	    boolean on = ((ToggleButton) v).isChecked();
-	    
-	    if (on) {
-	        // Enable vibrate
-	    } else {
-	        // Disable vibrate
-	    }
-		
 	}
 
 }

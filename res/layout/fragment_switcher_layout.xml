@@ -7,6 +7,7 @@
     android:background="@color/top_gray">
     
 	<com.github.scratch_android.ToggleFragmentButton
+	    android:id="@+id/motion_button_id"
 	    android:src = "@drawable/button_motion_selected"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
@@ -14,70 +15,83 @@
     	android:layout_marginLeft="15dip"
     	myapp:selected_image_name="button_motion_selected"
     	myapp:unselected_image_name="button_motion"
-    	>
+    	myapp:button_id="@id/motion_button_id">
    	</com.github.scratch_android.ToggleFragmentButton>
    	
 	<com.github.scratch_android.ToggleFragmentButton
+	   	android:id="@+id/looks_button_id"
 	    android:src = "@drawable/button_looks"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="30dip"
     	android:layout_marginLeft="15dip"
     	myapp:selected_image_name="button_looks_selected"
-    	myapp:unselected_image_name="button_looks">
+    	myapp:unselected_image_name="button_looks"
+    	myapp:button_id="@id/looks_button_id">
    	</com.github.scratch_android.ToggleFragmentButton>
    	
 	<com.github.scratch_android.ToggleFragmentButton
+	    android:id="@+id/sound_button_id"
 	    android:src = "@drawable/button_sound"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="60dip"
     	android:layout_marginLeft="15dip"
     	myapp:selected_image_name="button_sound_selected"
-    	myapp:unselected_image_name="button_sound">
+    	myapp:unselected_image_name="button_sound"
+    	myapp:button_id="@id/sound_button_id">
    	</com.github.scratch_android.ToggleFragmentButton>
    	
 	<com.github.scratch_android.ToggleFragmentButton
+	    android:id="@+id/pen_button_id"
 	    android:src = "@drawable/button_pen"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="90dip"
     	android:layout_marginLeft="15dip"
     	myapp:selected_image_name="button_pen_selected"
-    	myapp:unselected_image_name="button_pen">
+    	myapp:unselected_image_name="button_pen"
+    	myapp:button_id="@id/pen_button_id">
    	</com.github.scratch_android.ToggleFragmentButton>
    	
 	<com.github.scratch_android.ToggleFragmentButton
+	    android:id="@+id/control_button_id"
 	    android:src = "@drawable/button_control"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="0dip"
     	android:layout_marginLeft="120dip"
     	myapp:selected_image_name="button_control_selected"
-    	myapp:unselected_image_name="button_control">
+    	myapp:unselected_image_name="button_control"
+    	myapp:button_id="@id/control_button_id">
    	</com.github.scratch_android.ToggleFragmentButton>
    	
 	<com.github.scratch_android.ToggleFragmentButton
+	    android:id="@+id/sensing_button_id"
 	    android:src = "@drawable/button_sensing"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="30dip"
     	android:layout_marginLeft="120dip"
     	myapp:selected_image_name="button_sensing_selected"
-    	myapp:unselected_image_name="button_sensing">
+    	myapp:unselected_image_name="button_sensing"
+    	myapp:button_id="@id/sensing_button_id">
    	</com.github.scratch_android.ToggleFragmentButton>
    	
 	<com.github.scratch_android.ToggleFragmentButton
+	    android:id="@+id/operators_button_id"
 	    android:src = "@drawable/button_operators"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="60dip"
     	android:layout_marginLeft="120dip"
     	myapp:selected_image_name="button_operators_selected"
-    	myapp:unselected_image_name="button_operators">
+    	myapp:unselected_image_name="button_operators"
+    	myapp:button_id="@id/operators_button_id">
    	</com.github.scratch_android.ToggleFragmentButton>
    	
 	<com.github.scratch_android.ToggleFragmentButton
+	    android:id="@+id/variables_button_id"
 	    android:src = "@drawable/button_variables"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
@@ -85,6 +99,7 @@
     	android:layout_marginLeft="120dip"
     	android:layout_marginBottom="10dip"
     	myapp:selected_image_name="button_variables_selected"
-    	myapp:unselected_image_name="button_variables">
+    	myapp:unselected_image_name="button_variables"
+    	myapp:button_id="@id/variables_button_id">
    	</com.github.scratch_android.ToggleFragmentButton>
 </RelativeLayout>

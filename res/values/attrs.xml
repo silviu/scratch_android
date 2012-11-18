@@ -8,5 +8,6 @@
     <declare-styleable name="ToggleFragmentButton">
         <attr name="selected_image_name" format="string"/>
         <attr name="unselected_image_name" format="string"/>
+        <attr name="button_id" format="integer"/>
     </declare-styleable>
 </resources>
