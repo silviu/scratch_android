@@ -63,6 +63,8 @@ class ButtonAreaManager implements View.OnClickListener {
 	public void onClick(View button) {
 		for (ToggleFragmentButton bt : listeners) {
 			if (bt == button) {
+				if (bt.is_toggled())
+					return;
 				bt.toggle();
 				toggle_listener.onToggle(bt.get_type());
 				continue;

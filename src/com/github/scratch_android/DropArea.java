@@ -70,7 +70,7 @@ class DropAreaManager implements View.OnDragListener, View.OnLongClickListener {
 	}
 
 	@Override
-	public boolean onDrag(View v, DragEvent event) {
+	public boolean onDrag(View dragged, DragEvent event) {
 		int action = event.getAction();
 		boolean result = true;
 		switch (action) {
