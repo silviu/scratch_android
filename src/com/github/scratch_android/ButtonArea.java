@@ -2,7 +2,10 @@ package com.github.scratch_android;
 
 import java.util.ArrayList;
 
+import com.github.scratch_android.ButtonArea.OnToggleListener;
+
 import android.os.Bundle;
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,21 +16,36 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 
-public class FragmentSwitcher extends Fragment {
+public class ButtonArea extends Fragment {
+	
+	private OnToggleListener toggle_listener;
+	
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		toggle_listener = (OnToggleListener) activity;
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_switcher_layout, container, false);
-		new FragmentSwitcherManager(v);
+		new ButtonAreaManager(v, toggle_listener);
 		return v;
+	}
+	
+	public interface OnToggleListener {
+		public void onToggle(int fragment);
 	}
 }
 
-class FragmentSwitcherManager implements View.OnClickListener {
+class ButtonAreaManager implements View.OnClickListener {
 	private View v;
 	private ArrayList<ToggleFragmentButton> listeners = new ArrayList<ToggleFragmentButton>();
+	OnToggleListener toggle_listener;
 	
-	public FragmentSwitcherManager(View v) {
+	public ButtonAreaManager(View v, OnToggleListener toggle_listener) {
 		this.v = v;
+		this.toggle_listener = toggle_listener;
 		construct_listeners();
 		listeners.get(0).toggle();
 	}
@@ -46,6 +64,7 @@ class FragmentSwitcherManager implements View.OnClickListener {
 		for (ToggleFragmentButton bt : listeners) {
 			if (bt == button) {
 				bt.toggle();
+				toggle_listener.onToggle(bt.get_type());
 				continue;
 			}
 			if (bt.is_toggled())
@@ -57,11 +76,16 @@ class FragmentSwitcherManager implements View.OnClickListener {
 class ToggleFragmentButton extends ImageView{
 	private String selected_image_name;
 	private String unselected_image_name;
+	private int type;
 	private boolean is_selected = false;
 	
 	public ToggleFragmentButton(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init(context, attrs);
+	}
+	
+	public int get_type() {
+		return this.type;
 	}
 	
 	public boolean is_toggled() {
@@ -84,7 +108,9 @@ class ToggleFragmentButton extends ImageView{
         this.selected_image_name = s.toString();
 
         s = a.getString(R.styleable.ToggleFragmentButton_unselected_image_name);
-        this.unselected_image_name = s.toString();        
+        this.unselected_image_name = s.toString();
+        
+        this.type = a.getInteger(R.styleable.ToggleFragmentButton_button_type, 1);
         a.recycle();
 	}
 }

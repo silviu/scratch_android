@@ -8,11 +8,11 @@
 		    android:orientation="vertical">
 		    
 		    <fragment
-            android:id="@+id/switcher_fragment"
-            android:name="com.github.scratch_android.FragmentSwitcher"
+            android:id="@+id/button_fragment"
+            android:name="com.github.scratch_android.ButtonArea"
             android:layout_width="212dp"
             android:layout_height="wrap_content"
-            class="com.github.scratch_android.FragmentSwitcher" />
+            class="com.github.scratch_android.ButtonArea" />
 		    
 		    <FrameLayout
             android:id="@+id/drag_area_fragment"
