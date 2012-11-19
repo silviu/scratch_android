@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myapp="http://schemas.android.com/apk/res/com.github.scratch_android"
+    android:id="@+id/myrellayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray">
+    
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/sound_play_sound"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="0dip"
+    	myapp:image_name="sound_play_sound"
+    	myapp:margin_top="0dip">
+   	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/sound_play_sound_until_done"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="30dip"
+    	myapp:image_name="sound_play_sound_until_done"
+    	myapp:margin_top="30dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/sound_stop_all_sounds"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="60dip"
+    	myapp:image_name="sound_stop_all_sounds"
+    	myapp:margin_top="60dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/sound_play_drum_for_beats"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="120dip"
+    	myapp:image_name="sound_play_drum_for_beats"
+    	myapp:margin_top="120dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/sound_rest_for_beats"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="150dip"
+    	myapp:image_name="sound_rest_for_beats"
+    	myapp:margin_top="150dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/sound_play_note_for_beats"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="210dip"
+    	myapp:image_name="sound_play_note_for_beats"
+    	myapp:margin_top="210dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/sound_set_instroment_to"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="240dip"
+    	myapp:image_name="sound_set_instroment_to"
+    	myapp:margin_top="240dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/sound_change_volume_by"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="270dip"
+    	myapp:image_name="sound_change_volume_by"
+    	myapp:margin_top="270dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/sound_set_volume_to"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="330dip"
+    	myapp:image_name="sound_set_volume_to"
+    	myapp:margin_top="330dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/sound_volume"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="360dip"
+    	myapp:image_name="sound_volume"
+    	myapp:margin_top="360dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/sound_change_tempo_to"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="390dip"
+    	myapp:image_name="sound_change_tempo_to"
+    	myapp:margin_top="390dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/sound_set_tempo_to"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="420dip"
+    	myapp:image_name="sound_set_tempo_to"
+    	myapp:margin_top="420dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/sound_tempo"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="480dip"
+    	myapp:image_name="sound_tempo"
+    	myapp:margin_top="480dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	
+</RelativeLayout>

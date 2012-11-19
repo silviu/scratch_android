@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myapp="http://schemas.android.com/apk/res/com.github.scratch_android"
+    android:id="@+id/myrellayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray">
+    
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/variables_make_a_variable"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="0dip"
+    	myapp:image_name="variables_make_a_variable"
+    	myapp:margin_top="0dip">
+   	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/variables_make_a_list"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="30dip"
+    	myapp:image_name="variables_make_a_list"
+    	myapp:margin_top="30dip">
+	</com.github.scratch_android.CodeBlock>
+
+</RelativeLayout>

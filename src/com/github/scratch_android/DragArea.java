@@ -127,7 +127,7 @@ class SoundDragArea extends DragArea {
 	public View onCreateView(LayoutInflater inflater,
 			ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.looks_blocks, container, false);
+		View v = inflater.inflate(R.layout.sound_blocks, container, false);
 		manager = new DragAreaManager(v);
 		return v;
 	}
@@ -138,7 +138,7 @@ class PenDragArea extends DragArea {
 	public View onCreateView(LayoutInflater inflater,
 			ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.looks_blocks, container, false);
+		View v = inflater.inflate(R.layout.pen_blocks, container, false);
 		manager = new DragAreaManager(v);
 		return v;
 	}
@@ -149,7 +149,7 @@ class ControlDragArea extends DragArea {
 	public View onCreateView(LayoutInflater inflater,
 			ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.looks_blocks, container, false);
+		View v = inflater.inflate(R.layout.control_blocks, container, false);
 		manager = new DragAreaManager(v);
 		return v;
 	}
@@ -160,7 +160,7 @@ class SensingDragArea extends DragArea {
 	public View onCreateView(LayoutInflater inflater,
 			ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.looks_blocks, container, false);
+		View v = inflater.inflate(R.layout.sensing_blocks, container, false);
 		manager = new DragAreaManager(v);
 		return v;
 	}
@@ -171,7 +171,7 @@ class OperatorsDragArea extends DragArea {
 	public View onCreateView(LayoutInflater inflater,
 			ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.looks_blocks, container, false);
+		View v = inflater.inflate(R.layout.operators_blocks, container, false);
 		manager = new DragAreaManager(v);
 		return v;
 	}
@@ -182,7 +182,7 @@ class VariablesDragArea extends DragArea {
 	public View onCreateView(LayoutInflater inflater,
 			ViewGroup container,
 			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.looks_blocks, container, false);
+		View v = inflater.inflate(R.layout.variables_blocks, container, false);
 		manager = new DragAreaManager(v);
 		return v;
 	}

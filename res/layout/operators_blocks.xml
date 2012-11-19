@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myapp="http://schemas.android.com/apk/res/com.github.scratch_android"
+    android:id="@+id/myrellayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray">
+    
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_plus"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="0dip"
+    	myapp:image_name="operators_plus"
+    	myapp:margin_top="0dip">
+   	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_minus"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="30dip"
+    	myapp:image_name="operators_minus"
+    	myapp:margin_top="30dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_mul"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="60dip"
+    	myapp:image_name="operators_mul"
+    	myapp:margin_top="60dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_div"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="120dip"
+    	myapp:image_name="operators_div"
+    	myapp:margin_top="120dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_pick_random_between"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="150dip"
+    	myapp:image_name="operators_pick_random_between"
+    	myapp:margin_top="150dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_less"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="210dip"
+    	myapp:image_name="operators_less"
+    	myapp:margin_top="210dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_equals"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="240dip"
+    	myapp:image_name="operators_equals"
+    	myapp:margin_top="240dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_greater"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="270dip"
+    	myapp:image_name="operators_greater"
+    	myapp:margin_top="270dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_and"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="330dip"
+    	myapp:image_name="operators_and"
+    	myapp:margin_top="330dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_or"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="360dip"
+    	myapp:image_name="operators_or"
+    	myapp:margin_top="360dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_not"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="390dip"
+    	myapp:image_name="operators_not"
+    	myapp:margin_top="390dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_join"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="420dip"
+    	myapp:image_name="operators_join"
+    	myapp:margin_top="420dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_letter_o_word"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="480dip"
+    	myapp:image_name="operators_letter_o_word"
+    	myapp:margin_top="480dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_length_of_word"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="540dip"
+    	myapp:image_name="operators_length_of_word"
+    	myapp:margin_top="540dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_mod"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="560dip"
+    	myapp:image_name="operators_mod"
+    	myapp:margin_top="560dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_round"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="578dip"
+    	myapp:image_name="operators_round"
+    	myapp:margin_top="578dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/operators_sqrt"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="578dip"
+    	myapp:image_name="operators_sqrt"
+    	myapp:margin_top="578dip">
+	</com.github.scratch_android.CodeBlock>
+	
+</RelativeLayout>

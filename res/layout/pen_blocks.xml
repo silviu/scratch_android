@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myapp="http://schemas.android.com/apk/res/com.github.scratch_android"
+    android:id="@+id/myrellayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray">
+    
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/pen_clear"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="0dip"
+    	myapp:image_name="pen_clear"
+    	myapp:margin_top="0dip">
+   	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/pen_down"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="30dip"
+    	myapp:image_name="pen_down"
+    	myapp:margin_top="30dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/pen_up"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="60dip"
+    	myapp:image_name="pen_up"
+    	myapp:margin_top="60dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/pen_set_pen_color_to"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="120dip"
+    	myapp:image_name="pen_set_pen_color_to"
+    	myapp:margin_top="120dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/pen_change_pen_color_by"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="150dip"
+    	myapp:image_name="pen_change_pen_color_by"
+    	myapp:margin_top="150dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/pen_set_color_to_int"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="210dip"
+    	myapp:image_name="pen_set_color_to_int"
+    	myapp:margin_top="210dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/pen_change_pen_shade_by"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="240dip"
+    	myapp:image_name="pen_change_pen_shade_by"
+    	myapp:margin_top="240dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/pen_set_pen_shade_to"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="270dip"
+    	myapp:image_name="pen_set_pen_shade_to"
+    	myapp:margin_top="270dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/pen_change_pen_size_by"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="330dip"
+    	myapp:image_name="pen_change_pen_size_by"
+    	myapp:margin_top="330dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/pen_set_pen_size_to"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="360dip"
+    	myapp:image_name="pen_set_pen_size_to"
+    	myapp:margin_top="360dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/pen_stamp"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="390dip"
+    	myapp:image_name="pen_stamp"
+    	myapp:margin_top="390dip">
+	</com.github.scratch_android.CodeBlock>
+
+</RelativeLayout>
