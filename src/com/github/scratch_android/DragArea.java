@@ -2,39 +2,29 @@ package com.github.scratch_android;
 
 import java.util.ArrayList;
 
+import com.github.scratch_android.MainActivity.ActivityToDragAreaListener;
+
 import android.app.Fragment;
 import android.content.ClipData;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.DragShadowBuilder;
 import android.widget.RelativeLayout;
 
-public class DragArea extends Fragment{
-	private DragAreaManager manager;
+public class DragArea extends Fragment implements ActivityToDragAreaListener{
+	protected DragAreaManager manager;
 	@Override
-	public View onCreateView(LayoutInflater inflater,
-			ViewGroup container,
-			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.motion_blocks, container, false);
-		manager = new DragAreaManager(v);
-		return v;
+	public void onCodeBlockDropped(CodeBlock cb) {
+		manager.code_block_dropped(cb);
+		
 	}
-	
-	public DragAreaManager get_manager() {
-		return this.manager;
-	}
-	
-	
 }
 
 class DragAreaManager implements View.OnDragListener, View.OnLongClickListener {
 	private View v;
 	private ArrayList<CodeBlock> listeners;
-	private MainActivityManager parent_manager;
 	ViewGroup container;
 	
 	public DragAreaManager(View v) {
@@ -61,10 +51,6 @@ class DragAreaManager implements View.OnDragListener, View.OnLongClickListener {
 		this.listeners.remove(cb);
 		container.removeView(cb);
 		add_new_code_block(cb);
-	}
-	
-	public void set_parent_manager(MainActivityManager pmanager) {
-		this.parent_manager = pmanager;
 	}
 	
 	public void construct_listeners() {

@@ -2,6 +2,9 @@ package com.github.scratch_android;
 
 import java.util.ArrayList;
 
+import com.github.scratch_android.DropArea.OnCodeBlockDroppedListener;
+
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.ClipData;
 import android.os.Bundle;
@@ -14,36 +17,38 @@ import android.view.View.DragShadowBuilder;
 import android.widget.RelativeLayout;
 
 public class DropArea extends Fragment {
-	private DropAreaManager manager;
+	
+	private OnCodeBlockDroppedListener cb_listener;
+	
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		cb_listener = (OnCodeBlockDroppedListener) activity;
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,	Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.code_layout, container, false);
-		manager = new DropAreaManager(v);
+		new DropAreaManager(v, cb_listener);
 		return v;
 	}
-
-	public DropAreaManager get_manager() {
-		return this.manager;
+	
+	public interface OnCodeBlockDroppedListener {
+		public void onCodeBlockDropped(CodeBlock cb);
 	}
+	
 }
 
 class DropAreaManager implements View.OnDragListener, View.OnLongClickListener {
 	private View v;
 	private ArrayList<CodeBlock> listeners;
-	private MainActivityManager parent_manager;
+	private OnCodeBlockDroppedListener cb_listener;
 
-	public DropAreaManager(View view) {
+	public DropAreaManager(View view, OnCodeBlockDroppedListener cb_listener) {
 		this.v = view;
 		this.listeners = new ArrayList<CodeBlock>();
+		this.cb_listener = cb_listener;
 		construct_listeners();
-	}
-
-	public void set_parent_manager(MainActivityManager pmanager) {
-		this.parent_manager = pmanager;
-	}
-	
-	private void code_block_dropped(CodeBlock cb) {
-		parent_manager.code_block_dropped(cb);
 	}
 
 	private void construct_listeners() {
@@ -86,7 +91,7 @@ class DropAreaManager implements View.OnDragListener, View.OnLongClickListener {
 			ViewGroup owner = (ViewGroup) cb.getParent();
 
 			if (owner != v && !listeners.contains(cb)) {
-				code_block_dropped(cb);
+				cb_listener.onCodeBlockDropped(cb);
 				cb.setOnLongClickListener(this);
 				cb.setOnDragListener(this);
 				listeners.add(cb);
