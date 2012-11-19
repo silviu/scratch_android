@@ -8,146 +8,155 @@
     android:background="@color/gray">
     
 	<com.github.scratch_android.CodeBlock
-	    android:src = "@drawable/motion_move_10_steps"
+	    android:src = "@drawable/looks_switch_to_costume"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="0dip"
-    	myapp:image_name="motion_move_10_steps"
+    	myapp:image_name="looks_switch_to_costume"
     	myapp:margin_top="0dip">
    	</com.github.scratch_android.CodeBlock>
 	
 	<com.github.scratch_android.CodeBlock
-	    android:src = "@drawable/motion_turn_15_degrees_right"
+	    android:src = "@drawable/looks_next_costume"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="30dip"
-    	myapp:image_name="motion_turn_15_degrees_right"
+    	myapp:image_name="looks_next_costume"
     	myapp:margin_top="30dip">
 	</com.github.scratch_android.CodeBlock>
 	
 	<com.github.scratch_android.CodeBlock
-	    android:src = "@drawable/motion_turn_15_degrees_left"
+	    android:src = "@drawable/looks_costume_nr"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="60dip"
-    	myapp:image_name="motion_turn_15_degrees_left"
+    	myapp:image_name="looks_costume_nr"
     	myapp:margin_top="60dip">
 	</com.github.scratch_android.CodeBlock>
 	
 	<com.github.scratch_android.CodeBlock
-	    android:src = "@drawable/motion_point_in_direction_90"
+	    android:src = "@drawable/looks_say_hello_for_sec"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="120dip"
-    	myapp:image_name="motion_point_in_direction_90"
+    	myapp:image_name="looks_say_hello_for_sec"
     	myapp:margin_top="120dip">
 	</com.github.scratch_android.CodeBlock>
 	
 	<com.github.scratch_android.CodeBlock
-	    android:src = "@drawable/motion_point_towards"
+	    android:src = "@drawable/looks_say_hello"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="150dip"
-    	myapp:image_name="motion_point_towards"
+    	myapp:image_name="looks_say_hello"
     	myapp:margin_top="150dip">
 	</com.github.scratch_android.CodeBlock>
 	
 	<com.github.scratch_android.CodeBlock
-	    android:src = "@drawable/motion_go_to_x_y"
+	    android:src = "@drawable/looks_think_hmm_fo_sec"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="210dip"
-    	myapp:image_name="motion_go_to_x_y"
+    	myapp:image_name="looks_think_hmm_fo_sec"
     	myapp:margin_top="210dip">
 	</com.github.scratch_android.CodeBlock>
 	
 	<com.github.scratch_android.CodeBlock
-	    android:src = "@drawable/motion_go_to"
+	    android:src = "@drawable/looks_think_hmm"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="240dip"
-    	myapp:image_name="motion_go_to"
+    	myapp:image_name="looks_think_hmm"
     	myapp:margin_top="240dip">
 	</com.github.scratch_android.CodeBlock>
 	
 	<com.github.scratch_android.CodeBlock
-	    android:src = "@drawable/motion_glide_time_to_x_y"
+	    android:src = "@drawable/looks_change_color_effect_by"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="270dip"
-    	myapp:image_name="motion_glide_time_to_x_y"
+    	myapp:image_name="looks_change_color_effect_by"
     	myapp:margin_top="270dip">
 	</com.github.scratch_android.CodeBlock>
 	
 	<com.github.scratch_android.CodeBlock
-	    android:src = "@drawable/motion_change_x_by"
+	    android:src = "@drawable/looks_set_color_effect_to"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="330dip"
-    	myapp:image_name="motion_change_x_by"
+    	myapp:image_name="looks_set_color_effect_to"
     	myapp:margin_top="330dip">
 	</com.github.scratch_android.CodeBlock>
 	
 	<com.github.scratch_android.CodeBlock
-	    android:src = "@drawable/motion_set_x_to"
+	    android:src = "@drawable/looks_clear_grapgic_effects"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="360dip"
-    	myapp:image_name="motion_set_x_to"
+    	myapp:image_name="looks_clear_grapgic_effects"
     	myapp:margin_top="360dip">
 	</com.github.scratch_android.CodeBlock>
 	
 	<com.github.scratch_android.CodeBlock
-	    android:src = "@drawable/motion_change_y_by"
+	    android:src = "@drawable/looks_change_size_by"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="390dip"
-    	myapp:image_name="motion_change_y_by"
+    	myapp:image_name="looks_change_size_by"
     	myapp:margin_top="390dip">
 	</com.github.scratch_android.CodeBlock>
 	
 	<com.github.scratch_android.CodeBlock
-	    android:src = "@drawable/motion_set_y_to"
+	    android:src = "@drawable/looks_set_size_to"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="420dip"
-    	myapp:image_name="motion_set_y_to"
+    	myapp:image_name="looks_set_size_to"
     	myapp:margin_top="420dip">
 	</com.github.scratch_android.CodeBlock>
 	
 	<com.github.scratch_android.CodeBlock
-	    android:src = "@drawable/motion_if_on_edge_bounce"
+	    android:src = "@drawable/looks_size"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="480dip"
-    	myapp:image_name="motion_if_on_edge_bounce"
+    	myapp:image_name="looks_size"
     	myapp:margin_top="480dip">
 	</com.github.scratch_android.CodeBlock>
 	
 	<com.github.scratch_android.CodeBlock
-	    android:src = "@drawable/motion_x_position"
+	    android:src = "@drawable/looks_show"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="540dip"
-    	myapp:image_name="motion_x_position"
+    	myapp:image_name="looks_show"
     	myapp:margin_top="540dip">
 	</com.github.scratch_android.CodeBlock>
 	
 	<com.github.scratch_android.CodeBlock
-	    android:src = "@drawable/motion_y_position"
+	    android:src = "@drawable/looks_hide"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="560dip"
-    	myapp:image_name="motion_y_position"
+    	myapp:image_name="looks_hide"
     	myapp:margin_top="560dip">
 	</com.github.scratch_android.CodeBlock>
 	
 	<com.github.scratch_android.CodeBlock
-	    android:src = "@drawable/motion_direction"
+	    android:src = "@drawable/looks_go_to_front"
 	    android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:layout_marginTop="578dip"
-    	myapp:image_name="motion_direction"
+    	myapp:image_name="looks_go_to_front"
+    	myapp:margin_top="578dip">
+	</com.github.scratch_android.CodeBlock>
+	
+	<com.github.scratch_android.CodeBlock
+	    android:src = "@drawable/looks_go_to_back_1_layers"
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="578dip"
+    	myapp:image_name="looks_go_to_back_1_layers"
     	myapp:margin_top="578dip">
 	</com.github.scratch_android.CodeBlock>
 	

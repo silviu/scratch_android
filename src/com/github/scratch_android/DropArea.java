@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.ClipData;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.view.View.DragShadowBuilder;
 import android.widget.RelativeLayout;
 
 public class DropArea extends Fragment {
-	
 	private OnCodeBlockDroppedListener cb_listener;
 	
 	@Override
@@ -67,14 +65,12 @@ class DropAreaManager implements View.OnDragListener, View.OnLongClickListener {
 	public boolean onLongClick(View v) {
 		ClipData data = ClipData.newPlainText("DragData", (String) v.getTag());
 		DragShadowBuilder dsb = new View.DragShadowBuilder(v);
-		boolean mDragInProgress = v.startDrag(data, dsb, (Object) v, 1);
-		Log.v((String) v.getTag(), "Started dragging:  " + mDragInProgress);
+		v.startDrag(data, dsb, (Object) v, 1);
 		return true;
 	}
 
 	@Override
 	public boolean onDrag(View v, DragEvent event) {
-		final String DROPTAG = "DropTarget";
 		int action = event.getAction();
 		boolean result = true;
 		switch (action) {
@@ -95,7 +91,6 @@ class DropAreaManager implements View.OnDragListener, View.OnLongClickListener {
 				cb.setOnLongClickListener(this);
 				cb.setOnDragListener(this);
 				listeners.add(cb);
-				
 			}
 			else if (owner == v) {
 				owner.removeView(cb);
@@ -106,7 +101,6 @@ class DropAreaManager implements View.OnDragListener, View.OnLongClickListener {
 			params.topMargin = (int) event.getY() - cb.getHeight()/2;
 			((ViewGroup) v).addView(cb, params);
 			
-			Log.v(DROPTAG, "Droped Operation on target");
 			System.gc();
 			break;
 		case DragEvent.ACTION_DRAG_ENDED:

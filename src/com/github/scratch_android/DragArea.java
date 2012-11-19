@@ -6,8 +6,9 @@ import com.github.scratch_android.MainActivity.ActivityToDragAreaListener;
 
 import android.app.Fragment;
 import android.content.ClipData;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.DragEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.DragShadowBuilder;
@@ -18,7 +19,6 @@ public class DragArea extends Fragment implements ActivityToDragAreaListener{
 	@Override
 	public void onCodeBlockDropped(CodeBlock cb) {
 		manager.code_block_dropped(cb);
-		
 	}
 }
 
@@ -37,7 +37,7 @@ class DragAreaManager implements View.OnDragListener, View.OnLongClickListener {
 	private void add_new_code_block(CodeBlock cb) {
 		String image_name  = ((CodeBlock) cb).get_image_name();
 		int top_margin = ((CodeBlock) cb).get_margin_top();
-		MotionCodeBlock child = new MotionCodeBlock(this.v.getContext(), image_name, top_margin);
+		CodeBlock child = new CodeBlock(this.v.getContext(), image_name, top_margin);
 		RelativeLayout.LayoutParams paramsw = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		paramsw.leftMargin = 0;
 		paramsw.topMargin = ((CodeBlock) cb).get_margin_top();
@@ -67,8 +67,7 @@ class DragAreaManager implements View.OnDragListener, View.OnLongClickListener {
 	public boolean onLongClick(View v) {
 		ClipData data = ClipData.newPlainText("DragData", (String) v.getTag());
 		DragShadowBuilder dsb = new View.DragShadowBuilder(v);
-		boolean mDragInProgress = v.startDrag(data, dsb, (Object) v, 1);
-		Log.v((String) v.getTag(), "Started dragging:  " + mDragInProgress);
+		v.startDrag(data, dsb, (Object) v, 1);
 		return true;
 	}
 
@@ -99,5 +98,26 @@ class DragAreaManager implements View.OnDragListener, View.OnLongClickListener {
 		}
 		return result;
 	}
-	
+}
+
+class LooksDragArea extends DragArea {
+	@Override
+	public View onCreateView(LayoutInflater inflater,
+			ViewGroup container,
+			Bundle savedInstanceState) {
+		View v = inflater.inflate(R.layout.looks_blocks, container, false);
+		manager = new DragAreaManager(v);
+		return v;
+	}
+}
+
+class MotionDragArea extends DragArea {
+	@Override
+	public View onCreateView(LayoutInflater inflater,
+			ViewGroup container,
+			Bundle savedInstanceState) {
+		View v = inflater.inflate(R.layout.motion_blocks, container, false);
+		manager = new DragAreaManager(v);
+		return v;
+	}
 }

@@ -4,13 +4,20 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-public abstract class CodeBlock extends ImageView {
+public class CodeBlock extends ImageView {
 	private int margin_top;
 	private String image_name;
 	
 	public CodeBlock(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init(context, attrs);
+	}
+	
+	public CodeBlock(Context context, String image, int margin_top) {
+		super(context);
+		this.setImageResource(getResources().getIdentifier(image, "drawable", "com.github.scratch_android"));
+		this.image_name = image;
+		this.margin_top = margin_top;
 	}
 	
 	private void init(Context context, AttributeSet attrs) {
@@ -29,10 +36,5 @@ public abstract class CodeBlock extends ImageView {
 		return this.margin_top;
 	}
 	
-	public CodeBlock(Context context, String image, int margin_top) {
-		super(context);
-		this.setImageResource(getResources().getIdentifier(image, "drawable", "com.github.scratch_android"));
-		this.image_name = image;
-		this.margin_top = margin_top;
-	}
+	
 }

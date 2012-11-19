@@ -25,7 +25,6 @@ public class MainActivity extends Activity implements OnCodeBlockDroppedListener
 		FragmentTransaction ft = fm.beginTransaction();
 		ft.add(R.id.drag_area_fragment, drag, "dynamic_drag_fragment");
 		ft.commit();
-		new MainActivityManager(fm);
 	}
 
 	@Override
@@ -42,12 +41,4 @@ public class MainActivity extends Activity implements OnCodeBlockDroppedListener
 	public interface ActivityToDragAreaListener {
 		public void onCodeBlockDropped(CodeBlock cb);
 	}
-}
-class MainActivityManager {
-	FragmentManager fm;
-	
-	public MainActivityManager(FragmentManager fmanager) {
-		fm = fmanager;
-	}
-
 }
