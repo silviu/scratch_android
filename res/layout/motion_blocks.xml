@@ -14,7 +14,9 @@
     	android:layout_marginTop="0dip"
     	myapp:image_name="motion_move_10_steps"
     	myapp:margin_top="0dip">
+    	
    	</com.github.scratch_android.CodeBlock>
+	
 	
 	<com.github.scratch_android.CodeBlock
 	    android:src = "@drawable/motion_turn_15_degrees_right"

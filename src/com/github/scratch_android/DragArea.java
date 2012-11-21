@@ -12,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.DragShadowBuilder;
+import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class DragArea extends Fragment implements ActivityToDragAreaListener{
 	protected DragAreaManager manager;
@@ -56,6 +58,8 @@ class DragAreaManager implements View.OnDragListener, View.OnLongClickListener {
 	public void construct_listeners() {
 		int child_count =  container.getChildCount();
 		for (int i = 0; i < child_count; i++) {
+			if (container.getChildAt(i) instanceof TextView)
+				continue;
 			CodeBlock cb = (CodeBlock) container.getChildAt(i);
 			cb.setOnLongClickListener(this);
 			cb.setOnDragListener(this);
