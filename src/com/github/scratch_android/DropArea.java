@@ -7,6 +7,7 @@ import com.github.scratch_android.DropArea.OnCodeBlockDroppedListener;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.ClipData;
+import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
@@ -128,34 +129,14 @@ class DropAreaManager implements View.OnDragListener, View.OnLongClickListener {
 	public boolean onDrag(View area, DragEvent event) {
 		int action = event.getAction();
 		boolean result = true;
-		SnapCodeBlock snap = null;
 
 		switch (action) {
 		case DragEvent.ACTION_DRAG_STARTED:
 			break;
 		case DragEvent.ACTION_DRAG_ENTERED:
-			if (area instanceof BlankCodeBlock && !contains_snap()) {
-				RelativeLayout.LayoutParams area_params =  (RelativeLayout.LayoutParams) area.getLayoutParams();
-				snap = new SnapCodeBlock(v.getContext());
-				RelativeLayout.LayoutParams snap_params = new RelativeLayout.LayoutParams(area.getWidth(), 5);
-				if (((BlankCodeBlock) area).get_type() == BlankCodeBlock.BOTTOM) {
-					Log.v("ENTERED BLANK", "BOTTOM");
-					snap_params.topMargin = area_params.topMargin;
-					snap_params.leftMargin = area_params.leftMargin;
-				}
-				else {
-					Log.v("ENTERED BLANK", "TOP");
-					snap_params.topMargin = area_params.topMargin + area.getHeight() - 6;
-					snap_params.leftMargin = area_params.leftMargin;
-				}
-				((ViewGroup) v).addView(snap, snap_params);
-			}
+			
 			break;
 		case DragEvent.ACTION_DRAG_EXITED:
-			if (area instanceof BlankCodeBlock) {
-				Log.v("EXITED", "BLANK SNAP AREA");
-				remove_snap();
-			}
 			break;
 		case DragEvent.ACTION_DRAG_LOCATION:
 			break;
@@ -177,51 +158,11 @@ class DropAreaManager implements View.OnDragListener, View.OnLongClickListener {
 
 			if (area == v) {
 				Log.v("DROPPED", " in V");
-
+				CodeBlockGroup group = new CodeBlockGroup(v.getContext(), cb, cb_listener);
 				RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 				params.leftMargin = (int) event.getX() - cb.getWidth()/2;
-				params.topMargin = (int) event.getY() - cb.getHeight()/2;
-				((ViewGroup) v).addView(cb, params);
-
-
-
-				BlankCodeBlock top_blank = get_new_blank(cb, BlankCodeBlock.TOP);
-				((ViewGroup) v).addView(top_blank);
-
-				BlankCodeBlock bottom_blank = get_new_blank(cb, BlankCodeBlock.BOTTOM);
-				((ViewGroup) v).addView(bottom_blank);
-
-			}
-			else if (area instanceof BlankCodeBlock) {
-				Log.v("DROPPED", " in BLANK");
-				listeners.remove(area);
-				RelativeLayout.LayoutParams tmp = (RelativeLayout.LayoutParams) area.getLayoutParams();
-				RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-				if (((BlankCodeBlock) area).get_type() == BlankCodeBlock.BOTTOM) {
-					rp.leftMargin = tmp.leftMargin;
-					rp.topMargin = tmp.topMargin - 6;
-
-					BlankCodeBlock bottom_blank = get_new_blank((BlankCodeBlock) area, cb, BlankCodeBlock.BOTTOM);
-					((ViewGroup) v).addView(bottom_blank);
-				}
-				else {
-					rp.leftMargin = tmp.leftMargin;
-					rp.topMargin = tmp.topMargin + 6;
-
-					BlankCodeBlock top_blank = get_new_blank((BlankCodeBlock) area, cb, BlankCodeBlock.TOP);
-					((ViewGroup) v).addView(top_blank);
-				}
-
-				((ViewGroup) v).removeView(area);
-				remove_snap();
-				((ViewGroup) v).addView(cb, rp);
-
-			}
-			else if (area instanceof CodeBlock) {
-				Log.v("DROPPED", " in CODEBLOCK");
-				result = true;
-				break;
+				params.topMargin = (int) event.getY() - cb.getHeight()/2 - BlankCodeBlock.HEIGHT;
+				((ViewGroup) v).addView(group, params);
 			}
 
 			Log.v("DROP_AREA CHILD_COUNT", String.valueOf(((ViewGroup) v).getChildCount()));

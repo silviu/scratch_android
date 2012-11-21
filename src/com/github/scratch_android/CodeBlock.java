@@ -67,12 +67,13 @@ public class CodeBlock extends ImageView {
 class BlankCodeBlock extends CodeBlock {
 	public final static int TOP = 0;
 	public final static int BOTTOM = 1;
+	public final static int HEIGHT = 30;
 	private int type;
 	
 	public BlankCodeBlock(Context context, int ptype) {
 		super(context);
 		this.type = ptype;
-		setBackgroundColor(Color.TRANSPARENT);
+		setBackgroundColor(Color.RED);
 		this.setScaleType(ScaleType.FIT_XY);
 	}
 	
@@ -89,5 +90,4 @@ class SnapCodeBlock extends CodeBlock {
 		this.setImageResource(getResources().getIdentifier("white_snap", "drawable", "com.github.scratch_android"));
 		this.setScaleType(ScaleType.FIT_XY);
 	}
-	
 }
