@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.github.scratch_android.DropArea.OnCodeBlockDroppedListener;
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.Context;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.View.DragShadowBuilder;
 import android.widget.RelativeLayout;
 
+@SuppressLint("ViewConstructor")
 public class CodeBlockGroup extends RelativeLayout {
 	private BlankCodeBlock top_blank;
 	private BlankCodeBlock bottom_blank;
@@ -20,7 +22,7 @@ public class CodeBlockGroup extends RelativeLayout {
 	private RelativeLayout.LayoutParams params_blank_bottom;
 	private RelativeLayout.LayoutParams params_code_block;
 	private ArrayList<CodeBlock> code_structure;
-	private ArrayList<Integer> total_height;
+	private CodeBlockGroupManager manager;
 
 	public CodeBlockGroup(Context context, CodeBlock parent, OnCodeBlockDroppedListener pcb_listener) {
 		super(context);
@@ -30,9 +32,8 @@ public class CodeBlockGroup extends RelativeLayout {
 		params_blank_bottom = new RelativeLayout.LayoutParams(parent.getWidth(), 30);
 		params_code_block = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		code_structure = new ArrayList<CodeBlock>();
-		total_height = new ArrayList<Integer>();
 		init(parent);
-		CodeBlockGroupManager manager = new CodeBlockGroupManager(this, pcb_listener, top_blank, bottom_blank, params_blank_top, params_blank_bottom);
+		manager = new CodeBlockGroupManager(this, pcb_listener);		
 	}
 
 	private void init(CodeBlock parent) {
@@ -40,79 +41,88 @@ public class CodeBlockGroup extends RelativeLayout {
 		params_blank_top.leftMargin = 0;
 		this.addView(top_blank, params_blank_top);
 		code_structure.add(top_blank);
-		total_height.add(BlankCodeBlock.HEIGHT);
 
 		params_code_block.topMargin = params_blank_top.topMargin + BlankCodeBlock.HEIGHT;
 		params_code_block.leftMargin = 0;
 		this.addView(parent, params_code_block);
 		code_structure.add(parent);
-		total_height.add(params_code_block.topMargin + parent.getHeight());
 
 		params_blank_bottom.topMargin = params_code_block.topMargin + parent.getHeight();
 		params_blank_bottom.leftMargin = 0;
 		this.addView(bottom_blank, params_blank_bottom);
 		code_structure.add(bottom_blank);
-		total_height.add(params_blank_bottom.topMargin + BlankCodeBlock.HEIGHT);
 	}
 
-	public void insertAt(CodeBlock new_code, CodeBlock old_code) {
+	public void insertCodeBlock(CodeBlock new_code, CodeBlock old_code) {
 		int index = code_structure.indexOf(old_code);
-		CodeBlock old = code_structure.get(index);
-		RelativeLayout.LayoutParams save_position;
-		if (old instanceof BlankCodeBlock) {
-			if (((BlankCodeBlock) old).get_type() == BlankCodeBlock.BOTTOM) {
-				save_position = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-				RelativeLayout.LayoutParams tmp = (RelativeLayout.LayoutParams) old.getLayoutParams();
+		
+		RelativeLayout.LayoutParams save_position = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+		RelativeLayout.LayoutParams tmp = (RelativeLayout.LayoutParams) old_code.getLayoutParams();
+		
+		if (old_code instanceof BlankCodeBlock) {
+			if (((BlankCodeBlock) old_code).get_type() == BlankCodeBlock.BOTTOM) {
 				save_position.topMargin = tmp.topMargin - 6;
 				save_position.leftMargin = tmp.leftMargin;
-				for (CodeBlock cdb : code_structure.subList(index, code_structure.size())) {
-					((RelativeLayout.LayoutParams) cdb.getLayoutParams()).topMargin += new_code.getHeight() - 6;
-				}
+				for (int i = index; i < code_structure.size(); i++) 
+					((RelativeLayout.LayoutParams) code_structure.get(i).getLayoutParams()).topMargin += new_code.getHeight() - 6;
+				bottom_blank.getLayoutParams().width = new_code.getWidth();
 			}
 			else {
 				if (index == 0)
 					index++;
-				save_position = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-				((RelativeLayout.LayoutParams)this.getLayoutParams()).topMargin -= new_code.getHeight();				
-				
-				RelativeLayout.LayoutParams tmp = (RelativeLayout.LayoutParams) code_structure.get(1).getLayoutParams();
+				((RelativeLayout.LayoutParams)this.getLayoutParams()).topMargin -= new_code.getHeight();
+				tmp = (RelativeLayout.LayoutParams) code_structure.get(1).getLayoutParams();
 				save_position.topMargin = tmp.topMargin + 6;
 				save_position.leftMargin = tmp.leftMargin;
-				((RelativeLayout.LayoutParams)top_blank.getLayoutParams()).topMargin = save_position.topMargin - new_code.getHeight() - 6;
-				for (CodeBlock cdb : code_structure.subList(index, code_structure.size())) {
-					((RelativeLayout.LayoutParams) cdb.getLayoutParams()).topMargin += new_code.getHeight();
-				}
+				((RelativeLayout.LayoutParams)top_blank.getLayoutParams()).topMargin = save_position.topMargin - new_code.getHeight() -2;
+				for (int i = index; i < code_structure.size(); i++)
+					((RelativeLayout.LayoutParams) code_structure.get(i).getLayoutParams()).topMargin += new_code.getHeight();
+				
+				top_blank.getLayoutParams().width = new_code.getWidth();
 			}
 		}
 		else {
-			save_position = (RelativeLayout.LayoutParams) old.getLayoutParams();
+			save_position.topMargin = tmp.topMargin;
+			save_position.leftMargin = tmp.leftMargin;
+			for (int i = index; i < code_structure.size(); i++)
+				((RelativeLayout.LayoutParams) code_structure.get(i).getLayoutParams()).topMargin += new_code.getHeight()-6;
+			
 		}
 		code_structure.add(index, new_code);
 		this.addView(new_code, save_position);
 	}
+
+	public void removeCodeBlock(CodeBlock cb) {
+		int index = code_structure.indexOf(cb);
+		for (int i = index+1; i < code_structure.size(); i++) {
+			((RelativeLayout.LayoutParams) code_structure.get(i).getLayoutParams()).topMargin -= cb.getHeight()-6;
+		}
+		code_structure.remove(cb);
+		manager.remove_listener(cb);
+		this.removeView(cb);
+
+		if (this.getChildCount() == 2) {
+			RelativeLayout rl = (RelativeLayout) this.getParent();
+			rl.removeView(this);
+		}
+	}
 }
 
-class CodeBlockGroupManager implements View.OnDragListener, View.OnLongClickListener {
+
+class CodeBlockGroupManager implements View.OnDragListener, View.OnLongClickListener, OnCodeBlockDroppedListener {
 	private CodeBlockGroup rel;
 	private ArrayList<CodeBlock> listeners;
 	private OnCodeBlockDroppedListener cb_listener;
-	private BlankCodeBlock top_blank;
-	private BlankCodeBlock bottom_blank;
-	private RelativeLayout.LayoutParams params_top_blank;
-	private RelativeLayout.LayoutParams params_bottom_blank;
 
-
-	public CodeBlockGroupManager(CodeBlockGroup prel, OnCodeBlockDroppedListener pcb_listener, 
-			BlankCodeBlock ptop_blank, BlankCodeBlock pbottom_blank,
-			RelativeLayout.LayoutParams pparams_top_blank, RelativeLayout.LayoutParams pparams_bottom_blank) {
+	public CodeBlockGroupManager(CodeBlockGroup prel, OnCodeBlockDroppedListener pcb_listener) {
 		this.rel = prel;
-		this.top_blank = ptop_blank;
-		this.bottom_blank = pbottom_blank;
-		this.params_top_blank = pparams_top_blank;
-		this.params_bottom_blank = pparams_bottom_blank;
 		this.listeners = new ArrayList<CodeBlock>();
 		this.cb_listener = pcb_listener;
 		construct_listeners();
+	}
+
+	public void remove_listener(CodeBlock cb) {
+		listeners.remove(cb);
 	}
 
 	private void construct_listeners() {
@@ -134,14 +144,6 @@ class CodeBlockGroupManager implements View.OnDragListener, View.OnLongClickList
 		return true;
 	}
 
-	private boolean contains_snap() {
-		int chid_no = rel.getChildCount();
-		for (int i = 0; i < chid_no; i++)
-			if (rel.getChildAt(i) instanceof SnapCodeBlock)
-				return true;
-		return false;
-	}
-
 	private void remove_snap() {
 		int chid_no = rel.getChildCount();
 		for (int i = 0; i < chid_no; i++)
@@ -154,18 +156,18 @@ class CodeBlockGroupManager implements View.OnDragListener, View.OnLongClickList
 		int action = event.getAction();
 		boolean result = true;
 		SnapCodeBlock snap = null;
+		CodeBlock cb;
+		ViewGroup owner;
 
 		switch (action) {
 		case DragEvent.ACTION_DRAG_STARTED:
 			break;
 		case DragEvent.ACTION_DRAG_ENTERED:
-			if (area == rel) {
-				Log.v("GROOOOOOOOOUUUUP", "YEEES");
-			}
-			if (area instanceof BlankCodeBlock && !contains_snap()) {
-				RelativeLayout.LayoutParams area_params =  (RelativeLayout.LayoutParams) area.getLayoutParams();
-				snap = new SnapCodeBlock(rel.getContext());
-				RelativeLayout.LayoutParams snap_params = new RelativeLayout.LayoutParams(area.getWidth(), 5);
+			remove_snap();
+			RelativeLayout.LayoutParams area_params =  (RelativeLayout.LayoutParams) area.getLayoutParams();
+			snap = new SnapCodeBlock(rel.getContext());
+			RelativeLayout.LayoutParams snap_params = new RelativeLayout.LayoutParams(area.getWidth(), 5);
+			if (area instanceof BlankCodeBlock) {
 				if (((BlankCodeBlock) area).get_type() == BlankCodeBlock.BOTTOM) {
 					Log.v("ENTERED BLANK", "BOTTOM");
 					snap_params.topMargin = area_params.topMargin;
@@ -176,39 +178,42 @@ class CodeBlockGroupManager implements View.OnDragListener, View.OnLongClickList
 					snap_params.topMargin = area_params.topMargin + area.getHeight() - 6;
 					snap_params.leftMargin = area_params.leftMargin;
 				}
-				rel.addView(snap, snap_params);
 			}
+			else if (area instanceof CodeBlock) {
+				snap_params.topMargin = area_params.topMargin;
+				snap_params.leftMargin = area_params.leftMargin;
+			}
+			rel.addView(snap, snap_params);
 			break;
 		case DragEvent.ACTION_DRAG_EXITED:
-			if (area instanceof BlankCodeBlock) {
-				Log.v("EXITED", "BLANK SNAP AREA");
-				remove_snap();
-			}
+			Log.v("EXITED", "BLANK SNAP AREA");
+			remove_snap();
 			break;
 		case DragEvent.ACTION_DRAG_LOCATION:
 			break;
 		case DragEvent.ACTION_DROP:
-			CodeBlock cb = (CodeBlock) event.getLocalState();
-			ViewGroup owner = (ViewGroup) cb.getParent();
+			if (area instanceof BlankCodeBlock || area instanceof CodeBlock) {
+				Log.v("DROPPED IN REL", "REL");
+				cb = (CodeBlock) event.getLocalState();
+				owner = (ViewGroup) cb.getParent();
 
+				if (owner instanceof CodeBlockGroup) {
+					((CodeBlockGroup) owner).removeCodeBlock(cb);
 
-			if (owner != rel) {
-				cb_listener.onCodeBlockDropped(cb);
+				} else if (owner == rel) {
+					owner.removeView(cb);
+				} else {				
+					//owner is DragArea{
+					cb_listener.onCodeBlockDropped(cb);
+				}
+
+				rel.insertCodeBlock(cb, (CodeBlock) area);
 				cb.setOnLongClickListener(this);
 				cb.setOnDragListener(this);
 				listeners.add(cb);
+				remove_snap();
+				System.gc();
 			}
-
-			if (owner == rel) {
-				owner.removeView(cb);
-			}
-
-			rel.insertAt(cb, (CodeBlock) area);
-			remove_snap();
-
-
-			System.gc();
-
 			break;
 		case DragEvent.ACTION_DRAG_ENDED:
 			break;
@@ -216,6 +221,13 @@ class CodeBlockGroupManager implements View.OnDragListener, View.OnLongClickList
 			result = false;
 		}
 		return result;
+	}
+
+	@Override
+	public void onCodeBlockDropped(CodeBlock cb) {
+		// remove codeblock from this viewgroup
+		Log.v("REMOVING CODE_BLOCK", "FROM CODE_BLOCK_GROUP");
+		rel.removeCodeBlock(cb);
 	}
 
 }

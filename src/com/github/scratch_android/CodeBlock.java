@@ -1,13 +1,13 @@
 package com.github.scratch_android;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
+@SuppressLint("ViewConstructor")
 public class CodeBlock extends ImageView {
 	private int margin_top;
 	private String image_name;

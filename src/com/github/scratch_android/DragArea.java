@@ -12,12 +12,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.DragShadowBuilder;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class DragArea extends Fragment implements ActivityToDragAreaListener{
 	protected DragAreaManager manager;
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater,
+			ViewGroup container,
+			Bundle savedInstanceState) {
+		Bundle bundle = getArguments();
+		int layout = bundle.getInt("block_id");
+		View v = inflater.inflate(layout, container, false);
+		manager = new DragAreaManager(v);
+		return v;
+	}
+	
 	@Override
 	public void onCodeBlockDropped(CodeBlock cb) {
 		manager.code_block_dropped(cb);
@@ -101,93 +112,5 @@ class DragAreaManager implements View.OnDragListener, View.OnLongClickListener {
 			break;
 		}
 		return result;
-	}
-}
-
-class MotionDragArea extends DragArea {
-	@Override
-	public View onCreateView(LayoutInflater inflater,
-			ViewGroup container,
-			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.motion_blocks, container, false);
-		manager = new DragAreaManager(v);
-		return v;
-	}
-}
-
-class LooksDragArea extends DragArea {
-	@Override
-	public View onCreateView(LayoutInflater inflater,
-			ViewGroup container,
-			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.looks_blocks, container, false);
-		manager = new DragAreaManager(v);
-		return v;
-	}
-}
-
-class SoundDragArea extends DragArea {
-	@Override
-	public View onCreateView(LayoutInflater inflater,
-			ViewGroup container,
-			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.sound_blocks, container, false);
-		manager = new DragAreaManager(v);
-		return v;
-	}
-}
-
-class PenDragArea extends DragArea {
-	@Override
-	public View onCreateView(LayoutInflater inflater,
-			ViewGroup container,
-			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.pen_blocks, container, false);
-		manager = new DragAreaManager(v);
-		return v;
-	}
-}
-
-class ControlDragArea extends DragArea {
-	@Override
-	public View onCreateView(LayoutInflater inflater,
-			ViewGroup container,
-			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.control_blocks, container, false);
-		manager = new DragAreaManager(v);
-		return v;
-	}
-}
-
-class SensingDragArea extends DragArea {
-	@Override
-	public View onCreateView(LayoutInflater inflater,
-			ViewGroup container,
-			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.sensing_blocks, container, false);
-		manager = new DragAreaManager(v);
-		return v;
-	}
-}
-
-class OperatorsDragArea extends DragArea {
-	@Override
-	public View onCreateView(LayoutInflater inflater,
-			ViewGroup container,
-			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.operators_blocks, container, false);
-		manager = new DragAreaManager(v);
-		return v;
-	}
-}
-
-class VariablesDragArea extends DragArea {
-	@Override
-	public View onCreateView(LayoutInflater inflater,
-			ViewGroup container,
-			Bundle savedInstanceState) {
-		View v = inflater.inflate(R.layout.variables_blocks, container, false);
-		manager = new DragAreaManager(v);
-		return v;
 	}
 }

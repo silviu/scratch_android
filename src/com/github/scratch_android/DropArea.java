@@ -7,8 +7,6 @@ import com.github.scratch_android.DropArea.OnCodeBlockDroppedListener;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.ClipData;
-import android.content.Context;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -17,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.DragShadowBuilder;
 import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
 
 public class DropArea extends Fragment {
 	private OnCodeBlockDroppedListener cb_listener;
@@ -41,14 +38,17 @@ public class DropArea extends Fragment {
 
 }
 
+
+
 class DropAreaManager implements View.OnDragListener, View.OnLongClickListener {
 	private View v;
-	private ArrayList<CodeBlock> listeners;
+	private ArrayList<CodeBlockGroup> listeners;
 	private OnCodeBlockDroppedListener cb_listener;
+	
 
 	public DropAreaManager(View view, OnCodeBlockDroppedListener cb_listener) {
 		this.v = view;
-		this.listeners = new ArrayList<CodeBlock>();
+		this.listeners = new ArrayList<CodeBlockGroup>();
 		this.cb_listener = cb_listener;
 		construct_listeners();
 	}
@@ -57,7 +57,7 @@ class DropAreaManager implements View.OnDragListener, View.OnLongClickListener {
 		ViewGroup container = (ViewGroup) this.v.findViewById(R.id.drop_area_container);
 		int child_count =  container.getChildCount();
 		for (int i = 0; i < child_count; i++) {
-			CodeBlock cb = (CodeBlock) container.getChildAt(i);
+			CodeBlockGroup cb = (CodeBlockGroup) container.getChildAt(i);
 			cb.setOnLongClickListener(this);
 			cb.setOnDragListener(this);
 			listeners.add(cb);
@@ -73,57 +73,7 @@ class DropAreaManager implements View.OnDragListener, View.OnLongClickListener {
 		return true;
 	}
 
-	private boolean contains_snap() {
-		int chid_no = ((ViewGroup) v).getChildCount();
-		for (int i = 0; i < chid_no; i++)
-			if (((ViewGroup) v).getChildAt(i) instanceof SnapCodeBlock)
-				return true;
-		return false;
-	}
 
-	private void remove_snap() {
-		int chid_no = ((ViewGroup) v).getChildCount();
-		for (int i = 0; i < chid_no; i++)
-			if (((ViewGroup) v).getChildAt(i) instanceof SnapCodeBlock)
-				((ViewGroup) v).removeViewAt(i);
-	}
-
-	private BlankCodeBlock get_new_blank(CodeBlock cb, int type) {
-		BlankCodeBlock blank = new BlankCodeBlock(v.getContext(), type);
-		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(cb.getWidth(), 30);
-		RelativeLayout.LayoutParams cb_params = (RelativeLayout.LayoutParams) cb.getLayoutParams();
-		if (type == BlankCodeBlock.TOP) {
-			params.topMargin = cb_params.topMargin - cb.getHeight();
-			params.leftMargin = cb_params.leftMargin;
-		}
-		else {
-			params.topMargin = cb_params.topMargin + cb.getHeight();
-			params.leftMargin = cb_params.leftMargin;
-		}
-		blank.setOnDragListener(this);
-		blank.setLayoutParams(params);
-		listeners.add(blank);
-
-		return blank;
-	}
-
-	private BlankCodeBlock get_new_blank(BlankCodeBlock area, CodeBlock cb, int type) {
-		RelativeLayout.LayoutParams tmp = (RelativeLayout.LayoutParams) area.getLayoutParams();
-		BlankCodeBlock blank = new BlankCodeBlock(v.getContext(), type);
-		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(cb.getWidth(), 30);
-		if (type == BlankCodeBlock.BOTTOM) {
-			params.topMargin = tmp.topMargin + cb.getHeight() - 6;
-			params.leftMargin = tmp.leftMargin;
-		}
-		else {
-			params.topMargin = tmp.topMargin - cb.getHeight() + 6;
-			params.leftMargin = tmp.leftMargin;
-		}
-		blank.setOnDragListener(this);
-		blank.setLayoutParams(params);
-		listeners.add(blank);
-		return blank;
-	}
 
 	@Override
 	public boolean onDrag(View area, DragEvent event) {
@@ -134,39 +84,48 @@ class DropAreaManager implements View.OnDragListener, View.OnLongClickListener {
 		case DragEvent.ACTION_DRAG_STARTED:
 			break;
 		case DragEvent.ACTION_DRAG_ENTERED:
-			
+
 			break;
 		case DragEvent.ACTION_DRAG_EXITED:
 			break;
 		case DragEvent.ACTION_DRAG_LOCATION:
 			break;
 		case DragEvent.ACTION_DROP:
-			CodeBlock cb = (CodeBlock) event.getLocalState();
-			ViewGroup owner = (ViewGroup) cb.getParent();
+			Object cb = event.getLocalState();
+			if (cb instanceof CodeBlock ) {
+				CodeBlock cb1 = (CodeBlock)cb;
+				ViewGroup owner = (ViewGroup) cb1.getParent();
+				// if owner is one of the codeblockgroups
+				if (listeners.contains(owner)) {
+					Log.v("OWNER IS", "CODE_BLOCK_GROUP");
+					CodeBlockGroup cbg = (CodeBlockGroup) owner;
+					cbg.removeCodeBlock(cb1);
+					// if code_block_group is empty after remove
+					// delete the code_block_group
+					if (cbg.getChildCount() == 2) {
+						listeners.remove(cbg);
+						((ViewGroup) v).removeView(cbg);
+					}
+					//owner.removeView(cb1);
+				// else parent is Drag Area
+				} else if (owner != v) {
+					Log.v("OWNER IS", "DRAG AREA");
+					cb_listener.onCodeBlockDropped(cb1);
+				}
 
+				if (area == v) {
+					Log.v("DROPPED", " in V");
+					CodeBlockGroup group = new CodeBlockGroup(v.getContext(), cb1, cb_listener);
+					RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+					params.leftMargin = (int) event.getX() - cb1.getWidth()/2;
+					params.topMargin = (int) event.getY() - cb1.getHeight()/2 - BlankCodeBlock.HEIGHT;
+					((ViewGroup) v).addView(group, params);
+					listeners.add(group);
+				}
 
-			if (owner != v) {
-				cb_listener.onCodeBlockDropped(cb);
-				cb.setOnLongClickListener(this);
-				cb.setOnDragListener(this);
-				listeners.add(cb);
+				Log.v("DROP_AREA CHILD_COUNT", String.valueOf(((ViewGroup) v).getChildCount()));
+				System.gc();
 			}
-
-			if (owner == v) {
-				owner.removeView(cb);
-			}
-
-			if (area == v) {
-				Log.v("DROPPED", " in V");
-				CodeBlockGroup group = new CodeBlockGroup(v.getContext(), cb, cb_listener);
-				RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-				params.leftMargin = (int) event.getX() - cb.getWidth()/2;
-				params.topMargin = (int) event.getY() - cb.getHeight()/2 - BlankCodeBlock.HEIGHT;
-				((ViewGroup) v).addView(group, params);
-			}
-
-			Log.v("DROP_AREA CHILD_COUNT", String.valueOf(((ViewGroup) v).getChildCount()));
-			System.gc();
 			break;
 		case DragEvent.ACTION_DRAG_ENDED:
 			break;
