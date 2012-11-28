@@ -1,7 +1,5 @@
 package com.github.scratch_android;
 
-import java.util.ArrayList;
-
 import com.github.scratch_android.ButtonArea.OnToggleListener;
 import com.github.scratch_android.DropArea.OnCodeBlockDroppedListener;
 import com.github.scratch_android.MainActivity.ActivityToDragAreaListener;
@@ -51,7 +49,6 @@ public class MainActivity extends Activity implements OnCodeBlockDroppedListener
 class ActivityManager {
 	private ActivityToDragAreaListener activity_to_drag;
 	private FragmentManager fm;
-	private DragArea drag_fragment;
 	private int[] drag_list = { R.layout.motion_blocks, R.layout.looks_blocks, R.layout.sound_blocks, 
 			R.layout.pen_blocks, R.layout.control_blocks, R.layout.sensing_blocks,
 			R.layout.operators_blocks, R.layout.variables_blocks };
@@ -59,11 +56,6 @@ class ActivityManager {
 	public ActivityManager(FragmentManager fm) {
 		this.fm = fm;
 		add_fragnment(0);
-		add_listeners();
-	}
-
-	private void add_listeners() {
-		activity_to_drag = (ActivityToDragAreaListener) drag_fragment;
 	}
 
 	private void add_fragnment(int fragment) {
@@ -71,6 +63,7 @@ class ActivityManager {
 		Bundle bundle = new Bundle();
 		bundle.putInt("block_id", drag_list[fragment]);
 		DragArea drag = new DragArea();
+		activity_to_drag = (ActivityToDragAreaListener) drag;
 		drag.setArguments(bundle);
 		ft.add(R.id.drag_area_fragment, drag, "dynamic_drag_fragment");
 		ft.commit();
@@ -81,6 +74,7 @@ class ActivityManager {
 		Bundle bundle = new Bundle();
 		bundle.putInt("block_id", drag_list[fragment]);
 		DragArea drag = new DragArea();
+		activity_to_drag = (ActivityToDragAreaListener) drag;
 		drag.setArguments(bundle);
 		ft.replace(R.id.drag_area_fragment, drag, "dynamic_drag_fragment");
 		ft.commit();
