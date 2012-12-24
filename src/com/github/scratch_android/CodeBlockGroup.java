@@ -9,6 +9,7 @@ import android.content.ClipData;
 import android.content.Context;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.DragShadowBuilder;
@@ -33,7 +34,7 @@ public class CodeBlockGroup extends RelativeLayout {
 		params_code_block = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		code_structure = new ArrayList<CodeBlock>();
 		init(parent);
-		manager = new CodeBlockGroupManager(this, pcb_listener);		
+		manager = new CodeBlockGroupManager(this, pcb_listener);
 	}
 
 	private void init(CodeBlock parent) {
@@ -55,10 +56,11 @@ public class CodeBlockGroup extends RelativeLayout {
 
 	public void insertCodeBlock(CodeBlock new_code, CodeBlock old_code) {
 		int index = code_structure.indexOf(old_code);
-		
+		if (index < 0)
+			index = 1;
 		RelativeLayout.LayoutParams save_position = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		RelativeLayout.LayoutParams tmp = (RelativeLayout.LayoutParams) old_code.getLayoutParams();
-		
+
 		if (old_code instanceof BlankCodeBlock) {
 			if (((BlankCodeBlock) old_code).get_type() == BlankCodeBlock.BOTTOM) {
 				save_position.topMargin = tmp.topMargin - 6;
@@ -77,16 +79,19 @@ public class CodeBlockGroup extends RelativeLayout {
 				((RelativeLayout.LayoutParams)top_blank.getLayoutParams()).topMargin = save_position.topMargin - new_code.getHeight() -2;
 				for (int i = index; i < code_structure.size(); i++)
 					((RelativeLayout.LayoutParams) code_structure.get(i).getLayoutParams()).topMargin += new_code.getHeight();
-				
+
 				top_blank.getLayoutParams().width = new_code.getWidth();
 			}
 		}
 		else {
 			save_position.topMargin = tmp.topMargin;
 			save_position.leftMargin = tmp.leftMargin;
+			Log.v("INDEX", String.valueOf(index));
+			Log.v("CODE_STUCT SIZE", String.valueOf(code_structure.size()));
+			
 			for (int i = index; i < code_structure.size(); i++)
 				((RelativeLayout.LayoutParams) code_structure.get(i).getLayoutParams()).topMargin += new_code.getHeight()-6;
-			
+
 		}
 		code_structure.add(index, new_code);
 		this.addView(new_code, save_position);
@@ -109,7 +114,7 @@ public class CodeBlockGroup extends RelativeLayout {
 }
 
 
-class CodeBlockGroupManager implements View.OnDragListener, View.OnLongClickListener, OnCodeBlockDroppedListener {
+class CodeBlockGroupManager implements View.OnDragListener, View.OnTouchListener, OnCodeBlockDroppedListener {
 	private CodeBlockGroup rel;
 	private ArrayList<CodeBlock> listeners;
 	private OnCodeBlockDroppedListener cb_listener;
@@ -129,18 +134,24 @@ class CodeBlockGroupManager implements View.OnDragListener, View.OnLongClickList
 		int child_count =  rel.getChildCount();
 		for (int i = 0; i < child_count; i++) {
 			CodeBlock cb = (CodeBlock) rel.getChildAt(i);
-			cb.setOnLongClickListener(this);
 			cb.setOnDragListener(this);
+			// users should not interact with blank codeblocks
+			if (cb instanceof BlankCodeBlock)
+				continue;
+			cb.setOnTouchListener(this);
+			
 			listeners.add(cb);
 		}
 		rel.setOnDragListener(this);
 	}
 
 	@Override
-	public boolean onLongClick(View v) {
-		ClipData data = ClipData.newPlainText("DRAGGING IN", "CODE_BLOCK_GROUP");
-		DragShadowBuilder dsb = new View.DragShadowBuilder(v);
-		v.startDrag(data, dsb, (Object) v, 1);
+	public boolean onTouch(View v, MotionEvent event) {
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			ClipData data = ClipData.newPlainText("DRAGGING IN", "CODE_BLOCK_GROUP");
+			DragShadowBuilder dsb = new View.DragShadowBuilder(v);
+			v.startDrag(data, dsb, (Object) v, 1);
+		}
 		return true;
 	}
 
@@ -155,7 +166,7 @@ class CodeBlockGroupManager implements View.OnDragListener, View.OnLongClickList
 	public boolean onDrag(View area, DragEvent event) {
 		int action = event.getAction();
 		boolean result = true;
-		SnapCodeBlock snap = null;
+		SnapCodeBlock snap;
 		CodeBlock cb;
 		ViewGroup owner;
 
@@ -208,7 +219,7 @@ class CodeBlockGroupManager implements View.OnDragListener, View.OnLongClickList
 				}
 
 				rel.insertCodeBlock(cb, (CodeBlock) area);
-				cb.setOnLongClickListener(this);
+				cb.setOnTouchListener(this);
 				cb.setOnDragListener(this);
 				listeners.add(cb);
 				remove_snap();

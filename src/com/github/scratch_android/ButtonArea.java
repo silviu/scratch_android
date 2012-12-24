@@ -100,7 +100,7 @@ class ToggleFragmentButton extends ImageView{
 	}
 	
 	public void toggle() {
-		this.setImageResource(getResources().getIdentifier(this.selected_image_name, "drawable", "com.github.scratch_android"));	
+		this.setImageResource(getResources().getIdentifier(this.selected_image_name, "drawable", "com.github.scratch_android"));
 		is_selected = true;
 	}
 	

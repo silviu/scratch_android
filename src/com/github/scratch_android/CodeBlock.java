@@ -4,22 +4,18 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ImageView;
 
 @SuppressLint("ViewConstructor")
 public class CodeBlock extends ImageView {
 	private int margin_top;
 	private String image_name;
-	private CodeBlock parent;
-	private CodeBlock child;
 	
 	public CodeBlock(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init(context, attrs);
 	}
 	
-	// for Blank codeblock
 	public CodeBlock(Context context) {
 		super(context);
 	}
@@ -46,22 +42,6 @@ public class CodeBlock extends ImageView {
 	public int get_margin_top() {
 		return this.margin_top;
 	}
-	
-	public void set_parent(CodeBlock cb) {
-		this.parent = cb;
-	}
-	
-	public CodeBlock get_parent() {
-		return this.parent;
-	}
-	
-	public void set_child(CodeBlock cb) {
-		this.child = cb;
-	}
-	
-	public CodeBlock get_child() {
-		return this.child;
-	}
 }
 
 class BlankCodeBlock extends CodeBlock {
@@ -86,7 +66,6 @@ class SnapCodeBlock extends CodeBlock {
 
 	public SnapCodeBlock(Context context) {
 		super(context);
-		Log.v("ADDIG", "NEW SNAP");
 		this.setImageResource(getResources().getIdentifier("white_snap", "drawable", "com.github.scratch_android"));
 		this.setScaleType(ScaleType.FIT_XY);
 	}
